@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class VehicleInformation extends JFrame {
+public class VehicleInformation {
 
     private JFrame frame;
     private JLabel no_of_vehicles, type_of_vehicle, model, plate_no, no_vehicle;
@@ -18,9 +18,11 @@ public class VehicleInformation extends JFrame {
     private JCheckBox nv;
     private JButton previous, next;
     private JComboBox tov;
+    private JFrame Gframe;
 
-    public VehicleInformation()
+    public VehicleInformation(JFrame Gframe)
     {
+    	this.Gframe=Gframe;
         frame = new JFrame();
         no_of_vehicles = new JLabel("No. of Vehicle: ");
         type_of_vehicle = new JLabel("Type of Vehicle: ");
@@ -62,12 +64,8 @@ public class VehicleInformation extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String st = e.getActionCommand();
                 if(st.equals("Previous")) {
-                    frame.dispose();
-                    try {
-                        new GuestInformation();
-                    }catch(Exception e2) {
-                        e2.printStackTrace();
-                    }
+                    frame.setVisible(false);
+                    Gframe.setVisible(true);
                 }
             }
 
@@ -80,6 +78,7 @@ public class VehicleInformation extends JFrame {
                     n1.setText("");
                     pn.setText("");
                     m.setText("");
+                    tov.setSelectedIndex(0);
                 } catch(Exception e1) {
                 }
             }
@@ -112,9 +111,9 @@ public class VehicleInformation extends JFrame {
         frame.setTitle("Vehicle Information");
         frame.setSize(300,250);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        validate();
+        frame.validate();
     }
 
     private void validateModel(){

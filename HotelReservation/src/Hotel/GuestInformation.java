@@ -10,14 +10,14 @@ import java.io.IOException;
 
 public class GuestInformation extends JFrame {
 
-    private JFrame frame;
+    private JFrame Gframe;
     private JLabel first_name, last_name, address, contact, no_of_adults, no_of_child;
     private JTextField fn, ln, ad, c, noa, noc;
     private JButton next;
 
     GuestInformation()
     {
-        frame = new JFrame();
+        Gframe = new JFrame();
 
         first_name = new JLabel("First Name: ");
         last_name = new JLabel("Last Name: ");
@@ -43,16 +43,16 @@ public class GuestInformation extends JFrame {
                 String st = e.getActionCommand();
                 if ( (st.equals("Next"))) {
                     createGuestFile();
-                    frame.dispose();
+                    Gframe.setVisible(false);
                     if(validateFirstName() && validateLastName() && validateAddress() && validateContact() && validateContact() && validateNumberOfChildren() && validateNumberOfAdults()) {
                         try {
-                            VehicleInformation v = new VehicleInformation();
+                            VehicleInformation v = new VehicleInformation(Gframe);
                         } catch (Exception e1) {
                             e1.printStackTrace();
                         }
                     }
                     else{
-                        frame.dispose();
+                        Gframe.dispose();
                         new GuestInformation();
                     }
                 }
@@ -73,12 +73,12 @@ public class GuestInformation extends JFrame {
         addComp(panel, noc, 1, 5, 2, 1, GridBagConstraints.WEST, GridBagConstraints.NONE);
         addComp(panel, next, 0, 6, 1, 1, GridBagConstraints.EAST, GridBagConstraints.NONE);
 
-        frame.add(panel);
-        frame.setLocationRelativeTo(null);
-        frame.setSize(350,300);
-        frame.setTitle("Guest Information");
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        Gframe.add(panel);
+        Gframe.setLocationRelativeTo(null);
+        Gframe.setSize(350,300);
+        Gframe.setTitle("Guest Information");
+        Gframe.setVisible(true);
+        Gframe.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         validate();
     }
